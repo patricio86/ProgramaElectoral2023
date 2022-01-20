@@ -13,51 +13,70 @@ public class Ciudadano extends Thread{
 	private ColegioElectoral colegioElectoral = null;
 	
 	
-
-
+	
 	public Ciudadano(int edad, int voto, String comunidad) {
 		this.edad = edad;
 		this.voto = voto;
 		this.comunidad = comunidad;
 	}
 
-
-
-
 	public void run() {
 		
-		ArrayList<Votacion> registroelectoral = new ArrayList<Votacion>();
-		
+		SessionFactory sessionFactory = null;
 		colegioElectoral = colegioElectoral.getInstance();
 		
 		try {
 			
+	        Configuration configuration = new Configuration();
+	        configuration.configure("hibernate.cfg.xml");
+
+	        sessionFactory = configuration.buildSessionFactory();
+	        
+	        sessionFactory.getCurrentSession().beginTransaction();
+	        
 			Boolean comprobarpartido = colegioElectoral.votar(voto,edad);
+			
 			if(comprobarpartido) {
 				
 				if(18 >= edad && edad <= 25 ) {
 					
 					if(0 <= voto && voto <= 30) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido X"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido X");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					} 
 					
 					if(31 <= voto && voto <= 50) {
 								
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Y"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Y");
+						sessionFactory.getCurrentSession().save(votacion);
 					
 					}
 					
 					if(51 <= voto && voto <= 70) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido W"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido W");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(71 <= voto && voto <= 100) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Z"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Z");
+						sessionFactory.getCurrentSession().save(votacion);
 					
 					}
 					
@@ -67,68 +86,86 @@ public class Ciudadano extends Thread{
 					
 					if(0 <= voto && voto <= 20) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido X"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido X");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(21 <= voto && voto <= 55) {
 								
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Y"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Y");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(56 <= voto && voto <= 85) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido W"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido W");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(86 <= voto && voto <= 100) {
 						
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Z"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Z");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
-					
-					
 				}
 
 				if(41 >= edad && edad <= 65 ) {
 					
 					if(0 <= voto && voto <= 10) {
 						
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido X"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido X");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(10 <= voto && voto <= 55) {
 								
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Y"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Y");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(56 <= voto && voto <= 90) {
 						
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido W"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido W");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(91 <= voto && voto <= 100) {
 						
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Z"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Z");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
-					
 					
 				}
 
@@ -137,30 +174,41 @@ public class Ciudadano extends Thread{
 					
 					if(0 <= voto && voto <= 25) {
 						
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido X"));
-						
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido X");
+						sessionFactory.getCurrentSession().save(votacion);
+							
 					}
 					
 					if(26 <= voto && voto <= 60) {
 								
-						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Y"));
-						
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Y");
+						sessionFactory.getCurrentSession().save(votacion);
+					
 					}
 					
 					if(61 <= voto && voto <= 95) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido W"));
-						
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido W");
+						sessionFactory.getCurrentSession().save(votacion);
 						
 					}
 					
 					if(96 <= voto && voto <= 100) {
 						
-						registroelectoral.add(new Votacion(edad,comunidad,"partido Z"));
+						Votacion votacion = new Votacion();
+						votacion.setEdad(edad);
+						votacion.setComunidad(comunidad);
+						votacion.setPartidovotado("partido Z");
+						sessionFactory.getCurrentSession().save(votacion);
 					
 					}
 					

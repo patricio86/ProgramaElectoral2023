@@ -6,8 +6,7 @@ public class Votacion {
 	private String comunidad;
 	private String partidovotado;
 	
-	public Votacion(int edad, String comunidad, String partidovotado) {
-		super();
+	public Votacion() {
 		this.edad = edad;
 		this.comunidad = comunidad;
 		this.partidovotado = partidovotado;
