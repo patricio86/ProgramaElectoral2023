@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 19 ene 2022 13:57:01 by Hibernate Tools 5.4.32.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="censo_por_comunidades" dynamic-insert="false" dynamic-update="false" mutable="true" name="modelo.PorcentajesRangoedad" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="porcentajes_rangoedad">
+        <id name="nombreComunidad" type="string">
+            <column length="30" name="NOMBRE_COMUNIDAD"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="rango19" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_1_9" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 1 y 9 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="rango1017" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_10_17" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 10 y 17 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="rango1825" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_18_25" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 18 y 25 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="rango2640" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_26_40" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 26 y 40 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="rango4165" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_41_65" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 41 y 65 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="rangoMas66" optimistic-lock="true" type="int" unique="false">
+            <column name="RANGO_MAS_66" not-null="true">
+                <comment>Porcentaje de habitantes cuya edad es superior o igual a 66 anios</comment>
+            </column>
+        </property>
+        <property generated="never" lazy="false" name="totalHabitantes" optimistic-lock="true" type="int" unique="false">
+            <column name="TOTAL_HABITANTES" not-null="true">
+                <comment>Numero total de habitantes que tiene la comunidad</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
