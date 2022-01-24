@@ -43,9 +43,6 @@ public class Modelo {
             	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory);
             	
             }
-            
-          
-            
            
         } catch (Exception e) {
             e.printStackTrace();

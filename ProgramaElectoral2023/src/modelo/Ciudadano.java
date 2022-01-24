@@ -26,15 +26,17 @@ public class Ciudadano extends Thread{
 
 	public void run() {
 		
-		Session session = null;
+		
 		colegioElectoral = colegioElectoral.getInstance();
+		
+		Session session = null;
 		
 		try {
 
+			session = sessionFactory.getCurrentSession();
+			
 			Boolean comprobarpartido = colegioElectoral.votar(voto,edad);
 			
-			session = sessionFactory.getCurrentSession();
-					
 			session.beginTransaction();
 			
 			if(comprobarpartido) {
@@ -248,11 +250,8 @@ public class Ciudadano extends Thread{
 					}		
 			}
 		}
-			
-			
-			
-				this.sleep(1000);
-			
+		
+				this.sleep(2000);
 		}catch(HibernateException | InterruptedException e) { 
 			e.printStackTrace();
 			if(null != session) {
