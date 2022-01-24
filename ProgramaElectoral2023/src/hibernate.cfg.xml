@@ -14,5 +14,6 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         <mapping resource="modelo/PorcentajesRangoedad.hbm.xml"/>
+        <mapping resource="modelo/Votacion.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

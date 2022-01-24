@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class PorcentajesRangoedad.
- * @see Modelo.PorcentajesRangoedad
+ * Home object for domain model class Votacion.
+ * @see Modelo.Votacion
  * @author Hibernate Tools
  */
-public class PorcentajesRangoedadHome {
+public class VotacionHome {
 
-	private static final Logger logger = Logger.getLogger(PorcentajesRangoedadHome.class.getName());
+	private static final Logger logger = Logger.getLogger(VotacionHome.class.getName());
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -29,8 +29,8 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public void persist(PorcentajesRangoedad transientInstance) {
-		logger.log(Level.INFO, "persisting PorcentajesRangoedad instance");
+	public void persist(Votacion transientInstance) {
+		logger.log(Level.INFO, "persisting Votacion instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
 			logger.log(Level.INFO, "persist successful");
@@ -40,8 +40,8 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public void attachDirty(PorcentajesRangoedad instance) {
-		logger.log(Level.INFO, "attaching dirty PorcentajesRangoedad instance");
+	public void attachDirty(Votacion instance) {
+		logger.log(Level.INFO, "attaching dirty Votacion instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			logger.log(Level.INFO, "attach successful");
@@ -51,8 +51,8 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public void attachClean(PorcentajesRangoedad instance) {
-		logger.log(Level.INFO, "attaching clean PorcentajesRangoedad instance");
+	public void attachClean(Votacion instance) {
+		logger.log(Level.INFO, "attaching clean Votacion instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			logger.log(Level.INFO, "attach successful");
@@ -62,8 +62,8 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public void delete(PorcentajesRangoedad persistentInstance) {
-		logger.log(Level.INFO, "deleting PorcentajesRangoedad instance");
+	public void delete(Votacion persistentInstance) {
+		logger.log(Level.INFO, "deleting Votacion instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			logger.log(Level.INFO, "delete successful");
@@ -73,11 +73,10 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public PorcentajesRangoedad merge(PorcentajesRangoedad detachedInstance) {
-		logger.log(Level.INFO, "merging PorcentajesRangoedad instance");
+	public Votacion merge(Votacion detachedInstance) {
+		logger.log(Level.INFO, "merging Votacion instance");
 		try {
-			PorcentajesRangoedad result = (PorcentajesRangoedad) sessionFactory.getCurrentSession()
-					.merge(detachedInstance);
+			Votacion result = (Votacion) sessionFactory.getCurrentSession().merge(detachedInstance);
 			logger.log(Level.INFO, "merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -86,11 +85,10 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public PorcentajesRangoedad findById(java.lang.String id) {
-		logger.log(Level.INFO, "getting PorcentajesRangoedad instance with id: " + id);
+	public Votacion findById(int id) {
+		logger.log(Level.INFO, "getting Votacion instance with id: " + id);
 		try {
-			PorcentajesRangoedad instance = (PorcentajesRangoedad) sessionFactory.getCurrentSession()
-					.get("Modelo.PorcentajesRangoedad", id);
+			Votacion instance = (Votacion) sessionFactory.getCurrentSession().get("Modelo.Votacion", id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
 			} else {
@@ -103,10 +101,10 @@ public class PorcentajesRangoedadHome {
 		}
 	}
 
-	public List findByExample(PorcentajesRangoedad instance) {
-		logger.log(Level.INFO, "finding PorcentajesRangoedad instance by example");
+	public List findByExample(Votacion instance) {
+		logger.log(Level.INFO, "finding Votacion instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("Modelo.PorcentajesRangoedad")
+			List results = sessionFactory.getCurrentSession().createCriteria("Modelo.Votacion")
 					.add(Example.create(instance)).list();
 			logger.log(Level.INFO, "find by example successful, result size: " + results.size());
 			return results;

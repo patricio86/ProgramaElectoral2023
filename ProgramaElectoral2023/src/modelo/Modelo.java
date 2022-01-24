@@ -1,8 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
@@ -10,12 +13,14 @@ import org.hibernate.query.Query;
 
 public class Modelo {
 
-    public static void main (String [] args) {
+    public static void main (String [] args) throws Exception {
 
         SessionFactory sessionFactory = null;
 
         try {
            
+        	Modelo modelohelper = new Modelo();
+        	
             Configuration configuration = new Configuration();
             configuration.configure("hibernate.cfg.xml");
    
@@ -35,18 +40,15 @@ public class Modelo {
             	int totalHabi = porcentajes.get(i).getTotalHabitantes();
             	String nombreComunidad = porcentajes.get(i).getNombreComunidad();
             	
-            	calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad);
+            	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory);
             	
             }
             
           
-            sessionFactory.getCurrentSession().getTransaction().commit();
+            
            
         } catch (Exception e) {
-            
             e.printStackTrace();
-            sessionFactory.getCurrentSession().getTransaction().rollback();
-            throw e;
         } finally {
         	if(sessionFactory != null) {
         		sessionFactory.close();
@@ -56,8 +58,8 @@ public class Modelo {
 
     }
 
-	public static void calcularPorcentajes(int edades1825, int edades2640, int edades4165, int edadesmas66,
-			int totalHabi, String nombreComunidad) {
+	public void calcularPorcentajes(int edades1825, int edades2640, int edades4165, int edadesmas66,
+			int totalHabi, String nombreComunidad, SessionFactory sessionFactory) throws HibernateException, InterruptedException {
 		
 		ArrayList<Datoshilos> ldatoshilos = new ArrayList<Datoshilos>();
 	 
@@ -87,37 +89,46 @@ public class Modelo {
 		 for(int i=0;i<ldatoshilos.size();i++) {
 			 for(int j=0;j<ldatoshilos.get(i).getRango1825();j++) {
 				 
-				 int edadjoven = (int)(18+(Math.random()*100));
+				 int edadjoven = (int)(18+(Math.random()*25));
 				 int votojoven = (int)(0+(Math.random()*100));
-				 Ciudadano ciudadanojoven = new Ciudadano(edadjoven,votojoven,ldatoshilos.get(i).getNombreComunidad());
+				
+				 Ciudadano	ciudadanojoven = new Ciudadano(edadjoven,votojoven,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanojoven.start();
+				 ciudadanojoven.join();
 			 }
 		 }
 		 
 		 for(int i=0;i<ldatoshilos.size();i++) {
 			 for(int j=0;j<ldatoshilos.get(i).getRango2640();j++) {
-				 int edadmediana = (int)(18+(Math.random()*100));
+				 int edadmediana = (int)(26+(Math.random()*40));
 				 int votomediano = (int)(0+(Math.random()*100));
-				 Ciudadano ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad());
+				 
+				  Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanomedianaedad.start();
+				 ciudadanomedianaedad.join();
 			 }
 		 }
 		 
 		 for(int i=0;i<ldatoshilos.size();i++) {
 			 for(int j=0;j<ldatoshilos.get(i).getRango4165();j++) {
-				 int edadalta = (int)(18+(Math.random()*100));
+				 int edadalta = (int)(41+(Math.random()*65));
 				 int votoalto = (int)(0+(Math.random()*100));
-				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,ldatoshilos.get(i).getNombreComunidad());
+				;
+			
+				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanomaduro.start();
+				 ciudadanomaduro.join();
 			 }
 		 }
 		 
 		 for(int i=0;i<ldatoshilos.size();i++) {
 			 for(int j=0;j<ldatoshilos.get(i).getRango66();j++) {
-				 int edad = (int)(18+(Math.random()*100));
+				 int edad = (int)(65+(Math.random()*100));
 				 int voto = (int)(0+(Math.random()*100));
-				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,ldatoshilos.get(i).getNombreComunidad());
+				
+				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanomayores.start();
+				 ciudadanomayores.join();
 			 }
 		 }
 		 
