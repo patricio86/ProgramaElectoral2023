@@ -26,41 +26,36 @@ public class Ciudadano extends Thread{
 
 	public void run() {
 		
-		
 		colegioElectoral = colegioElectoral.getInstance();
 		
 		Session session = null;
 		
 		try {
-
-			session = sessionFactory.getCurrentSession();
 			
+			
+		
 			Boolean comprobarpartido = colegioElectoral.votar(voto,edad);
-			
-			session.beginTransaction();
-			
+				
 			if(comprobarpartido) {
+				
+				session = sessionFactory.getCurrentSession();
+				session.beginTransaction();
 				
 				asignarVotos(session);
 		}
 		
-				this.sleep(2000);
+				this.sleep(1000);
 		}catch(HibernateException | InterruptedException e) { 
 			e.printStackTrace();
-			if(null != session) {
-				session.getTransaction().rollback();
-			}
-		}finally {
-			if(null != session) {
-				session.close();
-			}
 		}
 	}
 
-	public void asignarVotos(Session session) {
+	public void asignarVotos(Session session) throws InterruptedException {
 		if(18 >= edad && edad <= 25 ) {
 			
 			if(0 >= voto && voto <= 30) {
+				
+			try {
 				
 				Votacion votacion1 = new Votacion();
 				votacion1.setEdad(edad);
@@ -70,11 +65,24 @@ public class Ciudadano extends Thread{
 				session.getTransaction().commit();
 				System.out.println("votado X");
 				
+			}catch(HibernateException e) { 
+				e.printStackTrace();
+				if(null != session) {
+					session.getTransaction().rollback();
+				}
+			}finally {
+				if(null != session) {
+					session.close();
+				}
+			}
+				
+				
 			} 
 			
 			if(31 >= voto && voto <= 50) {
 				
-				
+				try {
+					
 				Votacion votacion2 = new Votacion();
 				votacion2.setEdad(edad);
 				votacion2.setComunidad(comunidad);
@@ -83,11 +91,22 @@ public class Ciudadano extends Thread{
 				session.getTransaction().commit();
 				System.out.println("votado Y");
 				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(51 >= voto && voto <= 70) {
 				
-				
+				try {
+					
 				Votacion votacion3 = new Votacion();
 				votacion3.setEdad(edad);
 				votacion3.setComunidad(comunidad);
@@ -95,11 +114,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion3);
 				session.getTransaction().commit();
 				System.out.println("votado W");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(71 >= voto && voto <= 100) {
 				
-				
+				try {
+					
 				Votacion votacion4 = new Votacion();
 				votacion4.setEdad(edad);
 				votacion4.setComunidad(comunidad);
@@ -108,6 +139,16 @@ public class Ciudadano extends Thread{
 				session.getTransaction().commit();
 				System.out.println("votado Z");
 				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 		}
@@ -116,7 +157,8 @@ public class Ciudadano extends Thread{
 			
 			if(0 >= voto && voto <= 20) {
 				
-				
+				try {
+					
 				Votacion votacion5 = new Votacion();
 				votacion5.setEdad(edad);
 				votacion5.setComunidad(comunidad);
@@ -124,11 +166,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion5);
 				session.getTransaction().commit();
 				System.out.println("votado X");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(21 >= voto && voto <= 55) {
 						
-				
+				try {
+					
 				Votacion votacion6 = new Votacion();
 				votacion6.setEdad(edad);
 				votacion6.setComunidad(comunidad);
@@ -136,11 +190,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion6);
 				session.getTransaction().commit();
 				System.out.println("votado Y");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(56 >= voto && voto <= 85) {
 				
-				
+				try {
+					
 				Votacion votacion7 = new Votacion();
 				votacion7.setEdad(edad);
 				votacion7.setComunidad(comunidad);
@@ -148,11 +214,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion7);
 				session.getTransaction().commit();
 				System.out.println("votado W");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(86 >= voto && voto <= 100) {
 				
-				
+				try {
+					
 				Votacion votacion8 = new Votacion();
 				votacion8.setEdad(edad);
 				votacion8.setComunidad(comunidad);
@@ -160,6 +238,17 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion8);
 				session.getTransaction().commit();
 				System.out.println("votado Z");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 		}
 
@@ -167,7 +256,8 @@ public class Ciudadano extends Thread{
 			
 			if(0 >= voto && voto <= 10) {
 				
-				
+				try {
+					
 				Votacion votacion9 = new Votacion();
 				votacion9.setEdad(edad);
 				votacion9.setComunidad(comunidad);
@@ -175,11 +265,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion9);
 				session.getTransaction().commit();
 				System.out.println("votado X");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(10 >= voto && voto <= 55) {
 						
-				
+				try {
+					
 				Votacion votacion10 = new Votacion();
 				votacion10.setEdad(edad);
 				votacion10.setComunidad(comunidad);
@@ -187,11 +289,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion10);
 				session.getTransaction().commit();
 				System.out.println("votado Y");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(56 >= voto && voto <= 90) {
 				
-				
+				try {
+					
 				Votacion votacion11 = new Votacion();
 				votacion11.setEdad(edad);
 				votacion11.setComunidad(comunidad);
@@ -199,11 +313,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion11);
 				session.getTransaction().commit();
 				System.out.println("votado W");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(91 >= voto && voto <= 100) {
 				
-				
+				try {
+					
 				Votacion votacion12 = new Votacion();
 				votacion12.setEdad(edad);
 				votacion12.setComunidad(comunidad);
@@ -211,6 +337,17 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion12);
 				session.getTransaction().commit();
 				System.out.println("votado Z");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 		}
@@ -220,19 +357,32 @@ public class Ciudadano extends Thread{
 			
 			if(0 >= voto && voto <= 25) {
 				
-				
+				try {
+					
 				Votacion votacion13 = new Votacion();
 				votacion13.setEdad(edad);
 				votacion13.setComunidad(comunidad);
 				votacion13.setPartidoVotado("partido X");
 				session.saveOrUpdate(votacion13);
 				session.getTransaction().commit();
-				System.out.println("votado X");	
+				System.out.println("votado X");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(26 >= voto && voto <= 60) {
 						
-				
+				try {
+					
 				Votacion votacion14 = new Votacion();
 				votacion14.setEdad(edad);
 				votacion14.setComunidad(comunidad);
@@ -241,11 +391,23 @@ public class Ciudadano extends Thread{
 				session.getTransaction().commit();
 				System.out.println("votado Y");
 				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
+				
 			}
 			
 			if(61 >= voto && voto <= 95) {
 				
-				
+				try {
+					
 				Votacion votacion15 = new Votacion();
 				votacion15.setEdad(edad);
 				votacion15.setComunidad(comunidad);
@@ -253,11 +415,23 @@ public class Ciudadano extends Thread{
 				session.saveOrUpdate(votacion15);
 				session.getTransaction().commit();
 				System.out.println("votado W");
+				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 			}
 			
 			if(96 >= voto && voto <= 100) {
 				
-
+				try {
+					
 				Votacion votacion16 = new Votacion();
 				votacion16.setEdad(edad);
 				votacion16.setComunidad(comunidad);
@@ -266,6 +440,16 @@ public class Ciudadano extends Thread{
 				session.getTransaction().commit();
 				System.out.println("votado Z");
 				
+				}catch(HibernateException e) { 
+					e.printStackTrace();
+					if(null != session) {
+						session.getTransaction().rollback();
+					}
+				}finally {
+					if(null != session) {
+						session.close();
+					}
+				}
 				
 			}		
 }
