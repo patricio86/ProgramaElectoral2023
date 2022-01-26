@@ -100,7 +100,7 @@ public class Modelo {
 				 int edadmediana = (int)(26+(Math.random()*40));
 				 int votomediano = (int)(0+(Math.random()*100));
 				 
-				  Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
+				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanomedianaedad.start();
 				 ciudadanomedianaedad.join();
 			 }
