@@ -31,7 +31,6 @@ public class Modelo {
             Query query = sessionFactory.getCurrentSession().createQuery("FROM PorcentajesRangoedad");
             ArrayList<PorcentajesRangoedad> porcentajes = (ArrayList<PorcentajesRangoedad>) query.list();
             
-            
             for(int i=0;i<porcentajes.size();i++) {
             	int edades1825 = porcentajes.get(i).getRango1825();
             	int edades2640 = porcentajes.get(i).getRango2640();
@@ -40,6 +39,9 @@ public class Modelo {
             	int totalHabi = porcentajes.get(i).getTotalHabitantes();
             	String nombreComunidad = porcentajes.get(i).getNombreComunidad();
             	
+            	
+            	
+				
             	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory);
             	
             }
@@ -59,7 +61,11 @@ public class Modelo {
 			int totalHabi, String nombreComunidad, SessionFactory sessionFactory) throws HibernateException, InterruptedException {
 		
 		ArrayList<Datoshilos> ldatoshilos = new ArrayList<Datoshilos>();
-	 
+		
+		
+    	
+		
+		
 		int votantes1825 = (int)Math.round(((edades1825*totalHabi)/100)/100000);
 		int votantes2640 = (int)Math.round(((edades2640*totalHabi)/100)/100000);
 		int votantes4165 = (int)Math.round(((edades4165*totalHabi)/100)/100000);
@@ -99,7 +105,7 @@ public class Modelo {
 			 for(int j=0;j<ldatoshilos.get(i).getRango2640();j++) {
 				 int edadmediana = (int)(26+(Math.random()*40));
 				 int votomediano = (int)(0+(Math.random()*100));
-				 
+		
 				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
 				 ciudadanomedianaedad.start();
 				 ciudadanomedianaedad.join();
