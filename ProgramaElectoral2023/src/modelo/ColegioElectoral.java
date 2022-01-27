@@ -29,22 +29,22 @@ public class ColegioElectoral {
 				
 				if(18 >= edad && edad <= 25 ) {
 					
-					if(0 < voto && voto < 30) {
+					if(0 > voto && voto < 30) {
 						
 						comprobarpartido = true;
 					}
 					
-					if(31 < voto && voto < 50) {
+					if(31 > voto && voto < 50) {
 								
 						comprobarpartido = true;
 					}
 					
-					if(51 < voto && voto < 70) {
+					if(51 > voto && voto < 70) {
 						
 						comprobarpartido = true;
 					}
 					
-					if(71 < voto && voto < 100) {
+					if(71 > voto && voto < 100) {
 						
 						comprobarpartido = true;
 					}
@@ -53,25 +53,25 @@ public class ColegioElectoral {
 				
 				if(26 >= edad && edad <= 40) {
 					
-					if(0 < voto && voto < 20) {
+					if(0 > voto && voto < 20) {
 						
 					
 						comprobarpartido = true;
 					}
 					
-					if(21 < voto && voto < 55) {
+					if(21 > voto && voto < 55) {
 								
 						
 						comprobarpartido = true;
 					}
 					
-					if(56 < voto && voto < 85) {
+					if(56 > voto && voto < 85) {
 						
 						
 						comprobarpartido = true;
 					}
 					
-					if(86 < voto && voto < 100) {
+					if(86 > voto && voto < 100) {
 						
 						
 						comprobarpartido = true;
@@ -82,25 +82,25 @@ public class ColegioElectoral {
 
 				if(41 >= edad && edad <= 65 ) {
 					
-					if(0 < voto && voto < 10) {
+					if(0 > voto && voto < 10) {
 						
 						
 						comprobarpartido = true;
 					}
 					
-					if(10 < voto && voto < 55) {
+					if(10 > voto && voto < 55) {
 								
 						
 						comprobarpartido = true;
 					}
 					
-					if(56 < voto && voto < 90) {
+					if(56 > voto && voto < 90) {
 						
 						
 						comprobarpartido = true;
 					}
 					
-					if(91 < voto && voto < 100) {
+					if(91 > voto && voto < 100) {
 						
 						
 						comprobarpartido = true;
@@ -112,25 +112,25 @@ public class ColegioElectoral {
 
 				if(66 >= edad ) {
 					
-					if(0 < voto && voto < 25) {
+					if(0 > voto && voto < 25) {
 						
 						
 						comprobarpartido = true;
 					}
 					
-					if(26 < voto && voto < 60) {
+					if(26 > voto && voto < 60) {
 								
 						
 						comprobarpartido = true;
 					}
 					
-					if(61 < voto && voto < 95) {
+					if(61 > voto && voto < 95) {
 						
 						
 						comprobarpartido = true;
 					}
 					
-					if(96 < voto && voto < 100) {
+					if(96 > voto && voto < 100) {
 						
 						
 						comprobarpartido = true;

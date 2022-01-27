@@ -1,18 +1,15 @@
 package modelo;
 
-import java.util.ArrayList;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
 
 public class Ciudadano extends Thread{
 
 	private int edad;
 	private int voto;
 	private String comunidad;
-	private String partidovotado;
 	private SessionFactory sessionFactory;
 	private ColegioElectoral colegioElectoral = null;
 	
@@ -26,7 +23,7 @@ public class Ciudadano extends Thread{
 
 	public void run() {
 		
-		colegioElectoral = colegioElectoral.getInstance();
+		colegioElectoral = ColegioElectoral.getInstance();
 		
 		Session session = null;
 		
@@ -36,9 +33,6 @@ public class Ciudadano extends Thread{
 				
 			if(comprobarpartido) {
 				
-				
-		    	
-			
 				if(18 >= edad && edad <= 25 ) {
 					
 					if(0 >= voto && voto <= 30) {
@@ -459,7 +453,7 @@ public class Ciudadano extends Thread{
 		}
 		}
 		
-				this.sleep(1000);
+				this.sleep(500);
 		}catch(HibernateException | InterruptedException e) { 
 			e.printStackTrace();
 		}

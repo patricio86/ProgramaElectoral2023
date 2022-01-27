@@ -39,9 +39,6 @@ public class Modelo {
             	int totalHabi = porcentajes.get(i).getTotalHabitantes();
             	String nombreComunidad = porcentajes.get(i).getNombreComunidad();
             	
-            	
-            	
-				
             	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory);
             	
             }
@@ -61,10 +58,6 @@ public class Modelo {
 			int totalHabi, String nombreComunidad, SessionFactory sessionFactory) throws HibernateException, InterruptedException {
 		
 		ArrayList<Datoshilos> ldatoshilos = new ArrayList<Datoshilos>();
-		
-		
-    	
-		
 		
 		int votantes1825 = (int)Math.round(((edades1825*totalHabi)/100)/100000);
 		int votantes2640 = (int)Math.round(((edades2640*totalHabi)/100)/100000);
@@ -88,53 +81,50 @@ public class Modelo {
 		}
 		
 		ldatoshilos.add(new Datoshilos(nombreComunidad,votantes1825,votantes2640,votantes4165,votantesmas66));
-		
-		 for(int i=0;i<ldatoshilos.size();i++) {
-			 for(int j=0;j<ldatoshilos.get(i).getRango1825();j++) {
+		  
+			 for(int j=0;j<votantes1825;j++) {
 				 
-				 int edadjoven = (int)(18+(Math.random()*25));
-				 int votojoven = (int)(0+(Math.random()*100));
+				 int edadjoven = (int)(Math.random()*(25-18))+18;
 				
-				 Ciudadano	ciudadanojoven = new Ciudadano(edadjoven,votojoven,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
+				 int votojoven = (int)((Math.random()*100));
+				 
+				 Ciudadano	ciudadanojoven = new Ciudadano(edadjoven,votojoven,nombreComunidad,sessionFactory);
+				
 				 ciudadanojoven.start();
 				 ciudadanojoven.join();
 			 }
-		 }
-		 
-		 for(int i=0;i<ldatoshilos.size();i++) {
-			 for(int j=0;j<ldatoshilos.get(i).getRango2640();j++) {
-				 int edadmediana = (int)(26+(Math.random()*40));
-				 int votomediano = (int)(0+(Math.random()*100));
-		
-				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
+	
+			 for(int j=0;j<votantes2640;j++) {
+				
+				 int edadmediana = (int)(Math.random()*(40-26))+26;
+				 int votomediano = (int)((Math.random()*100));
+				 
+				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,nombreComunidad,sessionFactory);
 				 ciudadanomedianaedad.start();
 				 ciudadanomedianaedad.join();
 			 }
-		 }
-		 
-		 for(int i=0;i<ldatoshilos.size();i++) {
-			 for(int j=0;j<ldatoshilos.get(i).getRango4165();j++) {
-				 int edadalta = (int)(41+(Math.random()*65));
-				 int votoalto = (int)(0+(Math.random()*100));
-				;
-			
-				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
+		
+			 for(int j=0;j<votantes4165;j++) {
+				 
+				 int edadalta = (int)(Math.random()*(65-41))+41;
+				 int votoalto = (int)((Math.random()*100));
+				 
+				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,nombreComunidad,sessionFactory);
 				 ciudadanomaduro.start();
 				 ciudadanomaduro.join();
 			 }
-		 }
-		 
-		 for(int i=0;i<ldatoshilos.size();i++) {
-			 for(int j=0;j<ldatoshilos.get(i).getRango66();j++) {
-				 int edad = (int)(65+(Math.random()*100));
-				 int voto = (int)(0+(Math.random()*100));
-				
-				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,ldatoshilos.get(i).getNombreComunidad(),sessionFactory);
+		
+			 for(int j=0;j<votantesmas66;j++) {
+				 
+				 int edad = (int)(int)(Math.random()*(100-66)+66);
+				 int voto = (int)((Math.random()*100));
+				 
+				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,nombreComunidad,sessionFactory);
 				 ciudadanomayores.start();
 				 ciudadanomayores.join();
 			 }
-		 }
-		 
+		
+	 
 		
 		 
 		 
