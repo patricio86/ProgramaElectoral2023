@@ -22,8 +22,8 @@ public class EstadisticaElectoral extends JFrame {
 	public JTextField ganador;
 	public JComboBox elegirporedad;
 	public JComboBox elegirporcomunidad;
-	
-	
+	public JButton btnEncender;
+	public JButton btnReset;
 	
 	
 	
@@ -75,11 +75,11 @@ public class EstadisticaElectoral extends JFrame {
 		contentPane.add(ganador);
 		ganador.setColumns(10);
 		
-		JButton btnEncender = new JButton("Encender");
+		btnEncender = new JButton("Encender");
 		btnEncender.setBounds(489, 11, 89, 23);
 		contentPane.add(btnEncender);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnReset.setBounds(588, 11, 89, 23);
 		contentPane.add(btnReset);
 	}

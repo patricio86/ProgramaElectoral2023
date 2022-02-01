@@ -24,18 +24,17 @@ public class Ciudadano extends Thread{
 	public void run() {
 		
 		colegioElectoral = ColegioElectoral.getInstance();
-		
 		Session session = null;
 		
 		try {
 			
 			Boolean comprobarpartido = colegioElectoral.votar(voto,edad);
 				
-			if(comprobarpartido) {
+			if(comprobarpartido == true) {
 				
-				if(18 >= edad && edad <= 25 ) {
+				if(18 <= edad && edad <= 25 ) {
 					
-					if(0 >= voto && voto <= 30) {
+					if(0 <= voto && voto <= 30) {
 						
 					try {
 						session = sessionFactory.getCurrentSession();
@@ -44,7 +43,7 @@ public class Ciudadano extends Thread{
 						votacion1.setEdad(edad);
 						votacion1.setComunidad(comunidad);
 						votacion1.setPartidoVotado("partido X");
-						session.saveOrUpdate(votacion1);
+						session.save(votacion1);
 						session.getTransaction().commit();
 						System.out.println("votado X");
 						
@@ -60,9 +59,7 @@ public class Ciudadano extends Thread{
 					}
 						
 						
-					} 
-					
-					if(31 >= voto && voto <= 50) {
+					} else if(31 <= voto && voto <= 50) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -71,7 +68,7 @@ public class Ciudadano extends Thread{
 						votacion2.setEdad(edad);
 						votacion2.setComunidad(comunidad);
 						votacion2.setPartidoVotado("partido Y");
-						session.saveOrUpdate(votacion2);
+						session.save(votacion2);
 						session.getTransaction().commit();
 						System.out.println("votado Y");
 						
@@ -85,9 +82,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(51 >= voto && voto <= 70) {
+					} else if(51 <= voto && voto <= 70) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -96,7 +91,7 @@ public class Ciudadano extends Thread{
 						votacion3.setEdad(edad);
 						votacion3.setComunidad(comunidad);
 						votacion3.setPartidoVotado("partido W");
-						session.saveOrUpdate(votacion3);
+						session.save(votacion3);
 						session.getTransaction().commit();
 						System.out.println("votado W");
 						
@@ -110,9 +105,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(71 >= voto && voto <= 100) {
+					} else if(71 <= voto && voto <= 100) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -121,7 +114,7 @@ public class Ciudadano extends Thread{
 						votacion4.setEdad(edad);
 						votacion4.setComunidad(comunidad);
 						votacion4.setPartidoVotado("partido Z");
-						session.saveOrUpdate(votacion4);
+						session.save(votacion4);
 						session.getTransaction().commit();
 						System.out.println("votado Z");
 						
@@ -137,11 +130,9 @@ public class Ciudadano extends Thread{
 						}
 					}
 					
-				}
-				
-				if(26 >= edad && edad <= 40) {
+				} else if(26 <= edad && edad <= 40) {
 					
-					if(0 >= voto && voto <= 20) {
+					if(0 <= voto && voto <= 20) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -150,7 +141,7 @@ public class Ciudadano extends Thread{
 						votacion5.setEdad(edad);
 						votacion5.setComunidad(comunidad);
 						votacion5.setPartidoVotado("partido X");
-						session.saveOrUpdate(votacion5);
+						session.save(votacion5);
 						session.getTransaction().commit();
 						System.out.println("votado X");
 						
@@ -164,9 +155,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(21 >= voto && voto <= 55) {
+					} else if(21 <= voto && voto <= 55) {
 								
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -175,7 +164,7 @@ public class Ciudadano extends Thread{
 						votacion6.setEdad(edad);
 						votacion6.setComunidad(comunidad);
 						votacion6.setPartidoVotado("partido Y");
-						session.saveOrUpdate(votacion6);
+						session.save(votacion6);
 						session.getTransaction().commit();
 						System.out.println("votado Y");
 						
@@ -189,9 +178,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(56 >= voto && voto <= 85) {
+					} else if(56 <= voto && voto <= 85) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -200,7 +187,7 @@ public class Ciudadano extends Thread{
 						votacion7.setEdad(edad);
 						votacion7.setComunidad(comunidad);
 						votacion7.setPartidoVotado("partido W");
-						session.saveOrUpdate(votacion7);
+						session.save(votacion7);
 						session.getTransaction().commit();
 						System.out.println("votado W");
 						
@@ -214,9 +201,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(86 >= voto && voto <= 100) {
+					} else if(86 <= voto && voto <= 100) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -225,7 +210,7 @@ public class Ciudadano extends Thread{
 						votacion8.setEdad(edad);
 						votacion8.setComunidad(comunidad);
 						votacion8.setPartidoVotado("partido Z");
-						session.saveOrUpdate(votacion8);
+						session.save(votacion8);
 						session.getTransaction().commit();
 						System.out.println("votado Z");
 						
@@ -240,11 +225,9 @@ public class Ciudadano extends Thread{
 							}
 						}
 					}
-				}
-
-				if(41 >= edad && edad <= 65 ) {
+				} else if(41 <= edad && edad <= 65 ) {
 					
-					if(0 >= voto && voto <= 10) {
+					if(0 <= voto && voto <= 10) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -253,7 +236,7 @@ public class Ciudadano extends Thread{
 						votacion9.setEdad(edad);
 						votacion9.setComunidad(comunidad);
 						votacion9.setPartidoVotado("partido X");
-						session.saveOrUpdate(votacion9);
+						session.save(votacion9);
 						session.getTransaction().commit();
 						System.out.println("votado X");
 						
@@ -266,10 +249,8 @@ public class Ciudadano extends Thread{
 							if(null != session) {
 								session.close();
 							}
-						}
-					}
-					
-					if(10 >= voto && voto <= 55) {
+						} 
+					} else if(11 <= voto && voto <= 55) {
 								
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -278,7 +259,7 @@ public class Ciudadano extends Thread{
 						votacion10.setEdad(edad);
 						votacion10.setComunidad(comunidad);
 						votacion10.setPartidoVotado("partido Y");
-						session.saveOrUpdate(votacion10);
+						session.save(votacion10);
 						session.getTransaction().commit();
 						System.out.println("votado Y");
 						
@@ -291,10 +272,9 @@ public class Ciudadano extends Thread{
 							if(null != session) {
 								session.close();
 							}
-						}
-					}
-					
-					if(56 >= voto && voto <= 90) {
+						} 
+						
+					} else if(56 <= voto && voto <= 90) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -303,7 +283,7 @@ public class Ciudadano extends Thread{
 						votacion11.setEdad(edad);
 						votacion11.setComunidad(comunidad);
 						votacion11.setPartidoVotado("partido W");
-						session.saveOrUpdate(votacion11);
+						session.save(votacion11);
 						session.getTransaction().commit();
 						System.out.println("votado W");
 						
@@ -317,9 +297,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(91 >= voto && voto <= 100) {
+					} else if(91 <= voto && voto <= 100) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -328,9 +306,9 @@ public class Ciudadano extends Thread{
 						votacion12.setEdad(edad);
 						votacion12.setComunidad(comunidad);
 						votacion12.setPartidoVotado("partido Z");
-						session.saveOrUpdate(votacion12);
+						session.save(votacion12);
 						session.getTransaction().commit();
-						System.out.println("votado Z");
+						System.out.println("votado Z" );
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -344,12 +322,9 @@ public class Ciudadano extends Thread{
 						}
 					}
 					
-				}
-
-
-				if(66 >= edad ) {
+				} else if(66 <= edad ) {
 					
-					if(0 >= voto && voto <= 25) {
+					if(0 <= voto && voto <= 25) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -358,7 +333,7 @@ public class Ciudadano extends Thread{
 						votacion13.setEdad(edad);
 						votacion13.setComunidad(comunidad);
 						votacion13.setPartidoVotado("partido X");
-						session.saveOrUpdate(votacion13);
+						session.save(votacion13);
 						session.getTransaction().commit();
 						System.out.println("votado X");
 						
@@ -372,9 +347,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(26 >= voto && voto <= 60) {
+					} else if(26 <= voto && voto <= 60) {
 								
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -383,7 +356,7 @@ public class Ciudadano extends Thread{
 						votacion14.setEdad(edad);
 						votacion14.setComunidad(comunidad);
 						votacion14.setPartidoVotado("partido Y");
-						session.saveOrUpdate(votacion14);
+						session.save(votacion14);
 						session.getTransaction().commit();
 						System.out.println("votado Y");
 						
@@ -398,9 +371,7 @@ public class Ciudadano extends Thread{
 							}
 						}
 						
-					}
-					
-					if(61 >= voto && voto <= 95) {
+					} else if(61 <= voto && voto <= 95) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -409,7 +380,7 @@ public class Ciudadano extends Thread{
 						votacion15.setEdad(edad);
 						votacion15.setComunidad(comunidad);
 						votacion15.setPartidoVotado("partido W");
-						session.saveOrUpdate(votacion15);
+						session.save(votacion15);
 						session.getTransaction().commit();
 						System.out.println("votado W");
 						
@@ -423,9 +394,7 @@ public class Ciudadano extends Thread{
 								session.close();
 							}
 						}
-					}
-					
-					if(96 >= voto && voto <= 100) {
+					} else if(96 <= voto && voto <= 100) {
 						
 						try {
 							session = sessionFactory.getCurrentSession();
@@ -434,7 +403,7 @@ public class Ciudadano extends Thread{
 						votacion16.setEdad(edad);
 						votacion16.setComunidad(comunidad);
 						votacion16.setPartidoVotado("partido Z");
-						session.saveOrUpdate(votacion16);
+						session.save(votacion16);
 						session.getTransaction().commit();
 						System.out.println("votado Z");
 						
@@ -453,7 +422,7 @@ public class Ciudadano extends Thread{
 		}
 		}
 		
-				this.sleep(500);
+				this.sleep(1000);
 		}catch(HibernateException | InterruptedException e) { 
 			e.printStackTrace();
 		}

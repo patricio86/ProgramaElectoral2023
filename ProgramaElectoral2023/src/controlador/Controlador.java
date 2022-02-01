@@ -14,6 +14,7 @@ public class Controlador implements ActionListener{
 	
 	
 	public Controlador(EstadisticaElectoral vista) {
+		this.vista = vista;
 		
 		
 		
