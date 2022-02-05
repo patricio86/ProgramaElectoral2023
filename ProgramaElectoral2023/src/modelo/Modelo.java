@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,20 +16,22 @@ import org.hibernate.query.Query;
 
 public class Modelo {
 
-    public static void main (String [] args) throws Exception {
+    public void arrancar  (JTextArea textArea) throws Exception {
 
         SessionFactory sessionFactory = null;
 
         try {
            
+        	Configuration configuration = new Configuration();
+			configuration.configure("hibernate.cfg.xml");
+		
+			sessionFactory = configuration.buildSessionFactory();
+			
+			sessionFactory.getCurrentSession().beginTransaction();
+			
         	Modelo modelohelper = new Modelo();
         	
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-   
-            sessionFactory = configuration.buildSessionFactory();
-            
-            sessionFactory.getCurrentSession().beginTransaction();
+           
  
             Query query = sessionFactory.getCurrentSession().createQuery("FROM PorcentajesRangoedad");
             ArrayList<PorcentajesRangoedad> porcentajes = (ArrayList<PorcentajesRangoedad>) query.list();
@@ -40,25 +44,33 @@ public class Modelo {
             	int totalHabi = porcentajes.get(i).getTotalHabitantes();
             	String nombreComunidad = porcentajes.get(i).getNombreComunidad();
             	
-            	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory);
+            	modelohelper.calcularPorcentajes(edades1825,edades2640,edades4165,edadesmas66,totalHabi,nombreComunidad,sessionFactory,textArea);
+            	
+            	
             	
             }
            
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
         	if(sessionFactory != null) {
         		sessionFactory.close();
         	}
         }
+		
 
-
+        
     }
 
+
 	public void calcularPorcentajes(int edades1825, int edades2640, int edades4165, int edadesmas66,
-			int totalHabi, String nombreComunidad, SessionFactory sessionFactory) throws HibernateException, InterruptedException {
+			int totalHabi, String nombreComunidad, SessionFactory sessionFactory, JTextArea textArea) throws HibernateException, InterruptedException {
 		
 		ArrayList<Datoshilos> ldatoshilos = new ArrayList<Datoshilos>();
+		
 		
 		int votantes1825 = (int)Math.round(((edades1825*totalHabi)/100)/100000);
 		int votantes2640 = (int)Math.round(((edades2640*totalHabi)/100)/100000);
@@ -88,8 +100,10 @@ public class Modelo {
 				 int edadjoven = (int)(Math.random()*(25-18))+18;
 				 int votojoven = (int)((Math.random()*100));
 				
-				 Ciudadano	ciudadanojoven = new Ciudadano(edadjoven,votojoven,nombreComunidad,sessionFactory);
+				 Ciudadano	ciudadanojoven = new Ciudadano(edadjoven,votojoven,nombreComunidad,sessionFactory,textArea);
 				
+				
+						 
 				 ciudadanojoven.start();
 				 ciudadanojoven.join();
 			 }
@@ -99,7 +113,10 @@ public class Modelo {
 				 int edadmediana = (int)(Math.random()*(40-26))+26;
 				 int votomediano = (int)((Math.random()*100));
 				
-				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,nombreComunidad,sessionFactory);
+				 Ciudadano	ciudadanomedianaedad = new Ciudadano(edadmediana,votomediano,nombreComunidad,sessionFactory,textArea);
+				 
+				
+				 
 				 ciudadanomedianaedad.start();
 				 ciudadanomedianaedad.join();
 			 }
@@ -109,7 +126,10 @@ public class Modelo {
 				 int edadalta = (int)(Math.random()*(65-41))+41;
 				 int votoalto = (int)((Math.random()*100));
 				
-				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,nombreComunidad,sessionFactory);
+				 Ciudadano ciudadanomaduro = new Ciudadano(edadalta,votoalto,nombreComunidad,sessionFactory,textArea);
+				 
+				
+				 
 				 ciudadanomaduro.start();
 				 ciudadanomaduro.join();
 			 }
@@ -119,15 +139,20 @@ public class Modelo {
 				 int edad = (int)(int)(Math.random()*(100-66)+66);
 				 int voto = (int)((Math.random()*100));
 				
-				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,nombreComunidad,sessionFactory);
+				 Ciudadano ciudadanomayores = new Ciudadano(edad,voto,nombreComunidad,sessionFactory,textArea);
+				 
+				
+				 
 				 ciudadanomayores.start();
 				 ciudadanomayores.join();
 			 }
+			
 		}
 
 	
-	public BigInteger contarByRangoPartido(SessionFactory sessionFactory, int edad1, int edad2, String partido) {
+	public Integer contarByRangoPartido(SessionFactory sessionFactory, int edad1, int edad2, String partido) {
 		
+		Integer nmvotos = null;
 		BigInteger nvotos = null;
 		
 		Session session = null;
@@ -141,11 +166,13 @@ public class Modelo {
 					+ "WHERE EDAD BETWEEN :edad1 AND :edad2 AND PARTIDO_VOTADO = :partido";
 			
 			Query consulta = session.createSQLQuery(consultasql);
-			consulta.setParameter("edad", edad1);
-			consulta.setParameter("edad", edad2);
-			consulta.setParameter("partido_votado", partido);
+			consulta.setParameter("edad1", edad1);
+			consulta.setParameter("edad2", edad2);
+			consulta.setParameter("partido", partido);
 			
 			nvotos = (BigInteger) consulta.getSingleResult();
+			String nvoto = String.valueOf(nvotos);
+			nmvotos = Integer.parseInt(nvoto);
 			
 		}catch(HibernateException e) { 
 			e.printStackTrace();
@@ -160,11 +187,12 @@ public class Modelo {
 		
 		
 		
-		return nvotos; 
+		return nmvotos; 
 	}
 	
-	public BigInteger contarByComunidadPartido(SessionFactory sessionFactory,String comunidad, String partido) {
+	public Integer contarByComunidadPartido(SessionFactory sessionFactory,String comunidad, String partido) {
 		
+		Integer nmvotos = null;
 		BigInteger nvotos = null;
 		
 		Session session = null;
@@ -175,13 +203,15 @@ public class Modelo {
 			session.beginTransaction();
 			
 			String consultasql = "SELECT COUNT(*) FROM VOTACION "
-					+ "WHERE COMUNIDAD = :comunidad AND :edad2 AND PARTIDO_VOTADO = :partido";
+					+ "WHERE COMUNIDAD = :comunidad AND PARTIDO_VOTADO = :partido";
 			
 			Query consulta = session.createSQLQuery(consultasql);
 			consulta.setParameter("comunidad", comunidad);
-			consulta.setParameter("partido_votado", partido);
+			consulta.setParameter("partido", partido);
 			
 			nvotos = (BigInteger) consulta.getSingleResult();
+			String nvoto = String.valueOf(nvotos);
+			nmvotos = Integer.parseInt(nvoto);
 			
 		}catch(HibernateException e) { 
 			e.printStackTrace();
@@ -196,14 +226,15 @@ public class Modelo {
 		
 		
 		
-		return nvotos; 
+		return nmvotos; 
 		
 		
 	}
 	
 	
-	public BigInteger contarByTotalPartido(SessionFactory sessionFactory, String partido) {
+	public Integer contarByTotalPartido(SessionFactory sessionFactory, String partido) {
 		
+		Integer nmvotos = null;
 		BigInteger nvotos = null;
 		
 		Session session = null;
@@ -217,9 +248,11 @@ public class Modelo {
 					+ "WHERE PARTIDO_VOTADO = :partido";
 			
 			Query consulta = session.createSQLQuery(consultasql);
-			consulta.setParameter("partido_votado", partido);
+			consulta.setParameter("partido", partido);
 			
 			nvotos = (BigInteger) consulta.getSingleResult();
+			String nvoto = String.valueOf(nvotos);
+			nmvotos = Integer.parseInt(nvoto);
 			
 		}catch(HibernateException e) { 
 			e.printStackTrace();
@@ -232,13 +265,63 @@ public class Modelo {
 			}
 		}
 		
-		return nvotos; 
+		return nmvotos; 
 		
+	}
+	
+	
+	public void eliminarDatosTable(SessionFactory sessionFactory) {
 		
+		Session session = null;
 		
+		try {
+			
+			session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			
+			String consultasql = "DELETE FROM Votacion";
 		
+			Query consulta = session.createQuery(consultasql);
+			consulta.executeUpdate();
+			
+	}catch(HibernateException e) { 
+		e.printStackTrace();
+		if(null != session) {
+			session.getTransaction().rollback();
+		}
+	}finally {
+		if(null != session) {
+			session.close();
+		}
+	}
+	
+}
+	
+	
+	public void resetearIdTable(SessionFactory sessionFactory) {
 		
+		Session session = null;
 		
+		try {
+			
+			session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			
+			String consultasql = "ALTER TABLE VOTACION AUTO_INCREMENT=1";
+			
+			Query consulta = session.createSQLQuery(consultasql);
+			consulta.executeUpdate();
+		
+		}catch(HibernateException e) { 
+			e.printStackTrace();
+			if(null != session) {
+				session.getTransaction().rollback();
+			}
+		}finally {
+			if(null != session) {
+				session.close();
+			}
+		}
 		
 	}
 }

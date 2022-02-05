@@ -26,5 +26,7 @@
 	<classpathentry kind="lib" path="C:/Users/Patricio/git/ProgramaElectoral2023/ProgramaElectoral2023/lib/mysql-connector-java-8.0.18.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Patricio/git/ProgramaElectoral2023/ProgramaElectoral2023/lib/stax-ex-1.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Patricio/git/ProgramaElectoral2023/ProgramaElectoral2023/lib/txw2-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patricio/git/ProgramaElectoral2023/ProgramaElectoral2023/lib/jcommon-1.0.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patricio/git/ProgramaElectoral2023/ProgramaElectoral2023/lib/jfreechart-1.0.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
