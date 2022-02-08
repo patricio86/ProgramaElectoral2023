@@ -62,6 +62,7 @@ public class Controlador implements ActionListener{
 				vista.elegirporcomunidad.setVisible(true);
 				vista.elegirporedad.setVisible(true);
 				vista.btnSalirInforme.setVisible(true);
+				vista.lblLogo.setVisible(false);
 				
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -73,19 +74,21 @@ public class Controlador implements ActionListener{
 			
 			try {
 				
-				
-				
+				vista.visualizargraficas.setVisible(false);
 				this.modelo.eliminarDatosTable(sessionFactory);
 				this.modelo.resetearIdTable(sessionFactory);
-				vista.btnEncender.setVisible(true);
 				vista.btnReset.setVisible(false);
 				vista.lblVotando.setVisible(false);
 				vista.lblTitulo.setVisible(false);
-				vista.lblPortada1.setVisible(true);
 				vista.btnInforme.setVisible(false);
 				vista.elegirporcomunidad.setVisible(false);
 				vista.elegirporedad.setVisible(false);
 				vista.btnSalirInforme.setVisible(false);
+				vista.scrollPane.setVisible(false);
+				vista.textArea.setVisible(false);
+				vista.btnEncender.setVisible(true);
+				vista.lblPortada1.setVisible(true);
+				vista.lblLogo.setVisible(false);
 				
 			}catch (Exception e1) {
 				e1.printStackTrace();
@@ -98,11 +101,14 @@ public class Controlador implements ActionListener{
 			
 			try {
 				
+				vista.visualizargraficas.setVisible(false);
 				vista.lblVotando.setVisible(false);
 				vista.lblTitulo.setVisible(false);
 				vista.lblPortada1.setVisible(false);
 				vista.scrollPane.setVisible(true);
 				vista.textArea.setVisible(true);
+				vista.lblLogo.setVisible(false);
+				
 				
 			}catch (Exception e1) {
 				e1.printStackTrace();
@@ -112,20 +118,23 @@ public class Controlador implements ActionListener{
 		
 		if(e.getSource() == vista.btnSalirInforme) {
 			
-			vista.lblPortada1.setVisible(true);
+			vista.visualizargraficas.setVisible(false);
 			vista.scrollPane.setVisible(false);
 			vista.textArea.setVisible(false);
-			
-			
-			
+			vista.lblPortada1.setVisible(true);
+			vista.lblLogo.setVisible(false);
 			
 		}
+		
+		
+		vista.visualizargraficas.removeAll();
 		
 		String rangoSelecionado = (String) vista.elegirporedad.getSelectedItem();
 		String comunidadSelecionado = (String) vista.elegirporcomunidad.getSelectedItem();
 		
 		if("Rango 18 - 25".equalsIgnoreCase(rangoSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -140,37 +149,13 @@ public class Controlador implements ActionListener{
 			String votosrango1825 = "Votos Rango 18 - 25";
 			
 			ChartPanel panel1 = calcularGraficos(votosrango1825, partido1825x, partido1825y, partido1825w, partido1825z);
-			vista.visualizargraficas1.add(panel1);
-			vista.visualizargraficas1.setVisible(true);
-			vista.visualizargraficas2.setVisible(false);
-			vista.visualizargraficas3.setVisible(false);
-			vista.visualizargraficas4.setVisible(false);
-			
-			/*
-			if((partido1825x > partido1825y) && (partido1825x > partido1825w) && (partido1825x > partido1825z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/psoe.png"));
-				
-			}else if((partido1825y > partido1825x) && (partido1825y > partido1825w) && (partido1825y > partido1825z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/pp.png"));
-				
-			}else if((partido1825w > partido1825x) && (partido1825w > partido1825y) && (partido1825w > partido1825z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/up.png"));
-				
-			}else if((partido1825z > partido1825x) && (partido1825z > partido1825y) && (partido1825z > partido1825w)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/vox.png"));
-				
-			}
-			*/
-			
-			
-			
+			vista.visualizargraficas.add(panel1);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(partido1825x,partido1825y,partido1825w,partido1825z);
 			
 		} else if ("Rango 26 - 40".equalsIgnoreCase(rangoSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -183,35 +168,16 @@ public class Controlador implements ActionListener{
 			Integer partido2640w = this.modelo.contarByRangoPartido(sessionFactory, 26, 40, "UP");
 			Integer partido2640z = this.modelo.contarByRangoPartido(sessionFactory, 26, 40, "VOX");
 			
-			/*
-			if((partido2640x > partido2640y) && (partido2640x > partido2640w) && (partido2640x > partido2640z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/psoe.png"));
-				
-			}else if((partido2640y > partido2640x) && (partido2640y > partido2640w) && (partido2640y > partido2640z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/pp.png"));
-				
-			}else if((partido2640w > partido2640x) && (partido2640w > partido2640y) && (partido2640w > partido2640z)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/up.png"));
-				
-			}else if((partido2640z > partido2640x) && (partido2640z > partido2640y) && (partido2640z > partido2640w)) {
-				
-				vista.lblLogoGanador.setIcon(new ImageIcon("/imagenes/vox.png"));
-				
-			}
-		*/
+			
 			String votosrango2640 = "Votos Rango 26 - 40";
 			ChartPanel panel2 = calcularGraficos(votosrango2640,partido2640x, partido2640y, partido2640w, partido2640z);
-			vista.visualizargraficas2.add(panel2);
-			vista.visualizargraficas2.setVisible(true);
-			vista.visualizargraficas1.setVisible(false);
-			vista.visualizargraficas3.setVisible(false);
-			vista.visualizargraficas4.setVisible(false);
+			vista.visualizargraficas.add(panel2);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(partido2640x,partido2640y,partido2640w,partido2640z);
 			
 		} else if ("Rango 41 - 65".equalsIgnoreCase(rangoSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -225,14 +191,13 @@ public class Controlador implements ActionListener{
 		
 			String votosrango4165 = "Votos Rango 41 - 65";
 			ChartPanel panel3 = calcularGraficos(votosrango4165,partido4165x, partido4165y, partido4165w, partido4165z);
-			vista.visualizargraficas3.add(panel3);
-			vista.visualizargraficas3.setVisible(true);
-			vista.visualizargraficas1.setVisible(false);
-			vista.visualizargraficas2.setVisible(false);
-			vista.visualizargraficas4.setVisible(false);
+			vista.visualizargraficas.add(panel3);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(partido4165x,partido4165y,partido4165w,partido4165z);
 			
 		} else if ("Rango mas 65".equalsIgnoreCase(rangoSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -246,11 +211,9 @@ public class Controlador implements ActionListener{
 		
 			String votosrangomas65 = "Votos Rango mas 65";
 			ChartPanel panel4 = calcularGraficos(votosrangomas65,partidox, partidoy, partidow, partidoz);
-			vista.visualizargraficas4.add(panel4);
-			vista.visualizargraficas4.setVisible(true);
-			vista.visualizargraficas1.setVisible(false);
-			vista.visualizargraficas2.setVisible(false);
-			vista.visualizargraficas3.setVisible(false);
+			vista.visualizargraficas.add(panel4);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(partidox,partidoy,partidow,partidoz);
 			
 		}
 	
@@ -258,6 +221,7 @@ public class Controlador implements ActionListener{
 		
 		if("Andalucía".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -265,74 +229,39 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosAndaluciax = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "PSOE");
-			Integer nmvotosAndaluciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "PP");
-			Integer nmvotosAndaluciay = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "UP");
+			Integer nmvotosAndaluciay = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "PP");
+			Integer nmvotosAndaluciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "UP");
 			Integer nmvotosAndaluciaz = this.modelo.contarByComunidadPartido(sessionFactory, "Andalucia", "VOX");
 		
 			String votoscomunidad = "Votos Andalucia";
-			ChartPanel panelBar1 = crearGraficosBarras(votoscomunidad,nmvotosAndaluciax,nmvotosAndaluciaw,nmvotosAndaluciay,nmvotosAndaluciaz);
-			vista.panelAndalucia.add(panelBar1);
-			vista.panelAndalucia.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			ChartPanel panelBar1 = crearGraficosBarras(votoscomunidad,nmvotosAndaluciax,nmvotosAndaluciay,nmvotosAndaluciaw,nmvotosAndaluciaz);
+			vista.visualizargraficas.add(panelBar1);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosAndaluciax,nmvotosAndaluciay,nmvotosAndaluciaw,nmvotosAndaluciaz);
 			
 		} else if("Aragón".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
 			vista.scrollPane.setVisible(false);
 			vista.textArea.setVisible(false);
 			
-			Integer nmvotosAragónx = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "PSOE");
-			Integer nmvotosAragónw = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "PP");
-			Integer nmvotosAragóny = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "UP");
-			Integer nmvotosAragónz = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "VOX");
+			Integer nmvotosAragonx = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "PSOE");
+			Integer nmvotosAragony = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "PP");
+			Integer nmvotosAragonw = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "UP");
+			Integer nmvotosAragonz = this.modelo.contarByComunidadPartido(sessionFactory, "Aragón", "VOX");
 			
 			String votoscomunidad = "Votos Aragón";
-			ChartPanel panelBar2 = crearGraficosBarras(votoscomunidad,nmvotosAragónx,nmvotosAragónw,nmvotosAragóny,nmvotosAragónz);
-			vista.panelAragon.add(panelBar2);
-			vista.panelAragon.setVisible(true);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
+			ChartPanel panelBar2 = crearGraficosBarras(votoscomunidad,nmvotosAragonx,nmvotosAragony,nmvotosAragonw,nmvotosAragonz);
+			vista.visualizargraficas.add(panelBar2);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosAragonx,nmvotosAragony,nmvotosAragonw,nmvotosAragonz);
 			
 		}else if("Asturias".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -340,36 +269,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosAsturiasx = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "PSOE");
-			Integer nmvotosAsturiasw = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "PP");
-			Integer nmvotosAsturiasy = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "UP");
+			Integer nmvotosAsturiasy = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "PP");
+			Integer nmvotosAsturiasw = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "UP");
 			Integer nmvotosAsturiasz = this.modelo.contarByComunidadPartido(sessionFactory, "Asturias", "VOX");
 			
 			String votoscomunidad = "Votos Asturias";
-			ChartPanel panelBar3 = crearGraficosBarras(votoscomunidad,nmvotosAsturiasx,nmvotosAsturiasw,nmvotosAsturiasy,nmvotosAsturiasz);
-			vista.panelAsturias.add(panelBar3);
-			vista.panelAsturias.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			ChartPanel panelBar3 = crearGraficosBarras(votoscomunidad,nmvotosAsturiasx,nmvotosAsturiasy,nmvotosAsturiasw,nmvotosAsturiasz);
+			vista.visualizargraficas.add(panelBar3);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosAsturiasx,nmvotosAsturiasy,nmvotosAsturiasw,nmvotosAsturiasz);
 			
 		}else if("Islas Baleares".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -377,73 +289,39 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosBalearesx = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "PSOE");
-			Integer nmvotosBalearesw = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "PP");
-			Integer nmvotosBalearesy = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "UP");
+			Integer nmvotosBalearesy = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "PP");
+			Integer nmvotosBalearesw = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "UP");
 			Integer nmvotosBalearesz = this.modelo.contarByComunidadPartido(sessionFactory, "Baleares", "VOX");
 			
 			String votoscomunidad = "Votos Baleares";
-			ChartPanel panelBar4 = crearGraficosBarras(votoscomunidad,nmvotosBalearesx,nmvotosBalearesw,nmvotosBalearesy,nmvotosBalearesz);
-			vista.panelBaleares.add(panelBar4);
-			vista.panelBaleares.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			ChartPanel panelBar4 = crearGraficosBarras(votoscomunidad,nmvotosBalearesx,nmvotosBalearesy,nmvotosBalearesw,nmvotosBalearesz);
+			vista.visualizargraficas.add(panelBar4);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosBalearesx,nmvotosBalearesy,nmvotosBalearesw,nmvotosBalearesz);
 			
 		}else if("Canarias".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
 			vista.scrollPane.setVisible(false);
 			vista.textArea.setVisible(false);
 			
-			Integer nmvotosBalearesx = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "PSOE");
-			Integer nmvotosBalearesw = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "PP");
-			Integer nmvotosBalearesy = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "UP");
-			Integer nmvotosBalearesz = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "VOX");
+			Integer nmvotosCanariasx = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "PSOE");
+			Integer nmvotosCanariasy = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "PP");
+			Integer nmvotosCanariasw = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "UP");
+			Integer nmvotosCanariasz = this.modelo.contarByComunidadPartido(sessionFactory, "Canarias", "VOX");
 			
 			String votoscomunidad = "Votos Canarias";
-			ChartPanel panelBar5 = crearGraficosBarras(votoscomunidad,nmvotosBalearesx,nmvotosBalearesw,nmvotosBalearesy,nmvotosBalearesz);
-			vista.panelCanarias.add(panelBar5);
-			vista.panelCanarias.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			ChartPanel panelBar5 = crearGraficosBarras(votoscomunidad,nmvotosCanariasx,nmvotosCanariasy,nmvotosCanariasw,nmvotosCanariasz);
+			vista.visualizargraficas.add(panelBar5);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCanariasx,nmvotosCanariasy,nmvotosCanariasw,nmvotosCanariasz);
 			
 		}else if("Cantabria".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -451,37 +329,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosCantabriax = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "PSOE");
-			Integer nmvotosCantabriaw = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "PP");
-			Integer nmvotosCantabriay = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "UP");
+			Integer nmvotosCantabriay = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "PP");
+			Integer nmvotosCantabriaw = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "UP");
 			Integer nmvotosCantabriaz = this.modelo.contarByComunidadPartido(sessionFactory, "Cantabria", "VOX");
 			
 			String votoscomunidad = "Votos Cantabria";
 			ChartPanel panelBar6 = crearGraficosBarras(votoscomunidad,nmvotosCantabriax,nmvotosCantabriaw,nmvotosCantabriay,nmvotosCantabriaz);
-			vista.panelCantabria.add(panelBar6);
-			vista.panelCantabria.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
+			vista.visualizargraficas.add(panelBar6);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCantabriax,nmvotosCantabriay,nmvotosCantabriaw,nmvotosCantabriaz);
 			
 		}else if("Castilla La Mancha".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -489,37 +349,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosCastillaLaManchax = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "PSOE");
-			Integer nmvotosCastillaLaManchaw = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "PP");
-			Integer nmvotosCastillaLaManchay = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "UP");
+			Integer nmvotosCastillaLaManchay = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "PP");
+			Integer nmvotosCastillaLaManchaw = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "UP");
 			Integer nmvotosCastillaLaManchaz = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla La Mancha", "VOX");
 			
 			String votoscomunidad = "Votos Castilla-La Mancha";
 			ChartPanel panelBar7 = crearGraficosBarras(votoscomunidad,nmvotosCastillaLaManchax,nmvotosCastillaLaManchaw,nmvotosCastillaLaManchay,nmvotosCastillaLaManchaz);
-			vista.panelCastillaLaMancha.add(panelBar7);
-			vista.panelCastillaLaMancha.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
-			
+			vista.visualizargraficas.add(panelBar7);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCastillaLaManchax,nmvotosCastillaLaManchaw,nmvotosCastillaLaManchay,nmvotosCastillaLaManchaz);
+					
 		}else if("Castilla y León".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -527,37 +369,20 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosCastillayLeónx = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "PSOE");
-			Integer nmvotosCastillayLeónw = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "PP");
-			Integer nmvotosCastillayLeóny = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "UP");
+			Integer nmvotosCastillayLeóny = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "PP");
+			Integer nmvotosCastillayLeónw = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "UP");
 			Integer nmvotosCastillayLeónz = this.modelo.contarByComunidadPartido(sessionFactory, "Castilla y León", "VOX");
 			
 			String votoscomunidad = "Votos Castilla y León";
 			ChartPanel panelBar8 = crearGraficosBarras(votoscomunidad,nmvotosCastillayLeónx,nmvotosCastillayLeónw,nmvotosCastillayLeóny,nmvotosCastillayLeónz);
-			vista.panelCastillaLeon.add(panelBar8);
-			vista.panelCastillaLeon.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar8);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCastillayLeónx,nmvotosCastillayLeónw,nmvotosCastillayLeóny,nmvotosCastillayLeónz);
 			
 			
 		}else if("Catalunia".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -565,37 +390,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosCataluñax = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "PSOE");
-			Integer nmvotosCataluñaw = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "PP");
-			Integer nmvotosCataluñay = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "UP");
+			Integer nmvotosCataluñay = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "PP");
+			Integer nmvotosCataluñaw = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "UP");
 			Integer nmvotosCataluñaz = this.modelo.contarByComunidadPartido(sessionFactory, "Catalunia", "VOX");
 			
 			String votoscomunidad = "Votos Cataluña";
 			ChartPanel panelBar9 = crearGraficosBarras(votoscomunidad,nmvotosCataluñax,nmvotosCataluñaw,nmvotosCataluñay,nmvotosCataluñaz);
-			vista.panelCataluña.add(panelBar9);
-			vista.panelCataluña.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
+			vista.visualizargraficas.add(panelBar9);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCataluñax,nmvotosCataluñaw,nmvotosCataluñay,nmvotosCataluñaz);
 			
 		}else if("Comunidad Valenciana".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -603,37 +410,20 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosValencianax = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "PSOE");
-			Integer nmvotosValencianaw = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "PP");
-			Integer nmvotosValencianay = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "UP");
+			Integer nmvotosValencianay = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "PP");
+			Integer nmvotosValencianaw = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "UP");
 			Integer nmvotosValencianaz = this.modelo.contarByComunidadPartido(sessionFactory, "Comunidad Valenciana", "VOX");
 			
 			String votoscomunidad = "Votos Comunidad Valenciana";
 			ChartPanel panelBar10 = crearGraficosBarras(votoscomunidad,nmvotosValencianax,nmvotosValencianaw,nmvotosValencianay,nmvotosValencianaz);
-			vista.panelComunidadValenciana.add(panelBar10);
-			vista.panelComunidadValenciana.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar10);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosValencianax,nmvotosValencianaw,nmvotosValencianay,nmvotosValencianaz);
 		
 			
 		}else if("Extremadura".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -641,37 +431,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosExtremadurax = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "PSOE");
-			Integer nmvotosExtremaduraw = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "PP");
-			Integer nmvotosExtremaduray = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "UP");
+			Integer nmvotosExtremaduray = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "PP");
+			Integer nmvotosExtremaduraw = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "UP");
 			Integer nmvotosExtremaduraz = this.modelo.contarByComunidadPartido(sessionFactory, "Extremadura", "VOX");
 			
 			String votoscomunidad = "Votos Extremadura";
 			ChartPanel panelBar11 = crearGraficosBarras(votoscomunidad,nmvotosExtremadurax,nmvotosExtremaduraw,nmvotosExtremaduray,nmvotosExtremaduraz);
-			vista.panelExtremadura.add(panelBar11);
-			vista.panelExtremadura.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
+			vista.visualizargraficas.add(panelBar11);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosExtremadurax,nmvotosExtremaduraw,nmvotosExtremaduray,nmvotosExtremaduraz);
 			
 		}else if("Galicia".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -679,37 +451,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosGaliciax = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "PSOE");
-			Integer nmvotosGaliciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "PP");
-			Integer nmvotosGaliciay = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "UP");
+			Integer nmvotosGaliciay = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "PP");
+			Integer nmvotosGaliciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "UP");
 			Integer nmvotosGaliciaz = this.modelo.contarByComunidadPartido(sessionFactory, "Galicia", "VOX");
 			
 			String votoscomunidad = "Votos Galicia";
 			ChartPanel panelBar12 = crearGraficosBarras(votoscomunidad,nmvotosGaliciax,nmvotosGaliciaw,nmvotosGaliciay,nmvotosGaliciaz);
-			vista.panelGalicia.add(panelBar12);
-			vista.panelGalicia.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			
+			vista.visualizargraficas.add(panelBar12);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosGaliciax,nmvotosGaliciaw,nmvotosGaliciay,nmvotosGaliciaz);
 			
 		}else if("La Rioja".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -717,37 +471,20 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosRiojax = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "PSOE");
-			Integer nmvotosRiojaw = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "PP");
-			Integer nmvotosRiojay = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "UP");
+			Integer nmvotosRiojay = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "PP");
+			Integer nmvotosRiojaw = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "UP");
 			Integer nmvotosRiojaz = this.modelo.contarByComunidadPartido(sessionFactory, "La Rioja", "VOX");
 			
 			String votoscomunidad = "Votos La Rioja";
 			ChartPanel panelBar13 = crearGraficosBarras(votoscomunidad,nmvotosRiojax,nmvotosRiojaw,nmvotosRiojay,nmvotosRiojaz);
-			vista.panelLaRioja.add(panelBar13);
-			vista.panelLaRioja.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar13);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosRiojax,nmvotosRiojaw,nmvotosRiojay,nmvotosRiojaz);
 			
 			
 		}else if("Murcia".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -755,37 +492,20 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosMurciax = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "PSOE");
-			Integer nmvotosMurciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "PP");
-			Integer nmvotosMurciay = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "UP");
+			Integer nmvotosMurciay = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "PP");
+			Integer nmvotosMurciaw = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "UP");
 			Integer nmvotosMurciaz = this.modelo.contarByComunidadPartido(sessionFactory, "Murcia", "VOX");
 			
 			String votoscomunidad = "Votos Murcia";
 			ChartPanel panelBar14 = crearGraficosBarras(votoscomunidad,nmvotosMurciax,nmvotosMurciaw,nmvotosMurciay,nmvotosMurciaz);
-			vista.panelMurcia.add(panelBar14);
-			vista.panelMurcia.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar14);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosMurciax,nmvotosMurciaw,nmvotosMurciay,nmvotosMurciaz);
 			
 			
 		}else if("Navarra".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -793,37 +513,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosNavarrax = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "PSOE");
-			Integer nmvotosNavarraw = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "PP");
-			Integer nmvotosNavarray = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "UP");
+			Integer nmvotosNavarray = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "PP");
+			Integer nmvotosNavarraw = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "UP");
 			Integer nmvotosNavarraz = this.modelo.contarByComunidadPartido(sessionFactory, "Navarra", "VOX");
 			
 			String votoscomunidad = "Votos Navarra";
 			ChartPanel panelBar14 = crearGraficosBarras(votoscomunidad,nmvotosNavarrax,nmvotosNavarraw,nmvotosNavarray,nmvotosNavarraz);
-			vista.panelNavarra.add(panelBar14);
-			vista.panelNavarra.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-		
+			vista.visualizargraficas.add(panelBar14);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosNavarrax,nmvotosNavarraw,nmvotosNavarray,nmvotosNavarraz);
 			
 		}else if("País Vasco".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -831,37 +533,20 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosVascox = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "PSOE");
-			Integer nmvotosVascow = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "PP");
-			Integer nmvotosVascoy = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "UP");
+			Integer nmvotosVascoy = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "PP");
+			Integer nmvotosVascow = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "UP");
 			Integer nmvotosVascoz = this.modelo.contarByComunidadPartido(sessionFactory, "País Vasco", "VOX");
 			
 			String votoscomunidad = "Votos País Vasco";
 			ChartPanel panelBar15 = crearGraficosBarras(votoscomunidad,nmvotosVascox,nmvotosVascow,nmvotosVascoy,nmvotosVascoz);
-			vista.panelPaisVasco.add(panelBar15);
-			vista.panelPaisVasco.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
+			vista.visualizargraficas.add(panelBar15);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosVascox,nmvotosVascow,nmvotosVascoy,nmvotosVascoz);
 			
 			
 		}else if("Ceuta".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -869,37 +554,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosCeutax = this.modelo.contarByComunidadPartido(sessionFactory, "Ceuta", "PSOE");
-			Integer nmvotosCeutaw = this.modelo.contarByComunidadPartido(sessionFactory, "Ceuta", "PP");
 			Integer nmvotosCeutay = this.modelo.contarByComunidadPartido(sessionFactory, "Ceuta", "PP");
+			Integer nmvotosCeutaw = this.modelo.contarByComunidadPartido(sessionFactory, "Ceuta", "PP");
 			Integer nmvotosCeutaz = this.modelo.contarByComunidadPartido(sessionFactory, "Ceuta", "VOX");
 			
 			String votoscomunidad = "Votos Ceuta";
 			ChartPanel panelBar16 = crearGraficosBarras(votoscomunidad,nmvotosCeutax,nmvotosCeutaw,nmvotosCeutay,nmvotosCeutaz);
-			vista.panelCeuta.add(panelBar16);
-			vista.panelCeuta.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNacional.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
-			vista.panelMelilla.setVisible(false);
+			vista.visualizargraficas.add(panelBar16);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosCeutax,nmvotosCeutaw,nmvotosCeutay,nmvotosCeutaz);
 			
 		}else if("Melilla".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -907,35 +574,19 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosMelillax = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "PSOE");
-			Integer nmvotosMelillaw = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "PP");
-			Integer nmvotosMelillay = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "UP");
+			Integer nmvotosMelillay = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "PP");
+			Integer nmvotosMelillaw = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "UP");
 			Integer nmvotosMelillaz = this.modelo.contarByComunidadPartido(sessionFactory, "Melilla", "VOX");
 			
 			String votoscomunidad = "Votos Melilla";
 			ChartPanel panelBar17 = crearGraficosBarras(votoscomunidad,nmvotosMelillax,nmvotosMelillaw,nmvotosMelillay,nmvotosMelillaz);
-			vista.panelMelilla.add(panelBar17);
-			vista.panelMelilla.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMurcia.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar17);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosMelillax,nmvotosMelillaw,nmvotosMelillay,nmvotosMelillaz);
 			
 		}else if("Total Nacional".equalsIgnoreCase(comunidadSelecionado)) {
 			
+			vista.visualizargraficas.removeAll();
 			vista.lblVotando.setVisible(false);
 			vista.lblTitulo.setVisible(false);
 			vista.lblPortada1.setVisible(false);
@@ -943,33 +594,16 @@ public class Controlador implements ActionListener{
 			vista.textArea.setVisible(false);
 			
 			Integer nmvotosNacionalx = this.modelo.contarByTotalPartido(sessionFactory,"PSOE");
-			Integer nmvotosNacionalw = this.modelo.contarByTotalPartido(sessionFactory,"PP");
-			Integer nmvotosNacionaly = this.modelo.contarByTotalPartido(sessionFactory,"UP");
+			Integer nmvotosNacionaly = this.modelo.contarByTotalPartido(sessionFactory,"PP");
+			Integer nmvotosNacionalw = this.modelo.contarByTotalPartido(sessionFactory,"UP");
 			Integer nmvotosNacionalz = this.modelo.contarByTotalPartido(sessionFactory,"VOX");
 			
 			String votosnacional = "Votos Total Nacional";
 			ChartPanel panelBar18 = crearGraficosBarras(votosnacional,nmvotosNacionalx,nmvotosNacionalw,nmvotosNacionaly,nmvotosNacionalz);
-			vista.panelNacional.add(panelBar18);
-			vista.panelNacional.setVisible(true);
-			vista.panelAragon.setVisible(false);
-			vista.panelAndalucia.setVisible(false);
-			vista.panelAsturias.setVisible(false);
-			vista.panelBaleares.setVisible(false);
-			vista.panelCanarias.setVisible(false);
-			vista.panelCantabria.setVisible(false);
-			vista.panelCastillaLaMancha.setVisible(false);
-			vista.panelCastillaLeon.setVisible(false);
-			vista.panelCataluña.setVisible(false);
-			vista.panelCeuta.setVisible(false);
-			vista.panelComunidadValenciana.setVisible(false);
-			vista.panelExtremadura.setVisible(false);
-			vista.panelGalicia.setVisible(false);
-			vista.panelLaRioja.setVisible(false);
-			vista.panelMadrid.setVisible(false); 
-			vista.panelMelilla.setVisible(false);
-			vista.panelMurcia.setVisible(false);
-			vista.panelNavarra.setVisible(false);
-			vista.panelPaisVasco.setVisible(false);
+			vista.visualizargraficas.add(panelBar18);
+			vista.visualizargraficas.setVisible(true);
+			calcularGanador(nmvotosNacionalx,nmvotosNacionalw,nmvotosNacionaly,nmvotosNacionalz);
+			
 		}
 		
 		
@@ -1016,6 +650,127 @@ public class Controlador implements ActionListener{
 	   
 		
 	    return panelBar;
+	}
+	
+	public void calcularGanador(int x, int y, int w, int z) {
+		
+		if(x > y && x > w && x > z) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(y > z && y > w && y > z) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(w > x && w > y && w > z) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/up_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(z > x && z > y && z > w) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/vox_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((x == y) && (x > z && x > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((y == z) && (y > x && y > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((w == z) && (w > x && w > y)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/up_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((z == x) && (z > y && z > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/vox_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((y == w) && (y > z && y > x)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/up_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((x == w) && (x > z && x > y)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((x == y && x == z) && (x > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((y == z && y == z) && (y > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((w == z && w == x) && (w > y)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/up_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((z == x && z == y) && (z > w)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/vox_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((y == w && y == z) && (y > x)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if((x == w && x == z) && (x > y)) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+			
+			
+		}else if(x == y && x == z && x == w) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(y == z && y == z && y == w) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(w == z && w == x && w == y) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/up_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(z == x && z == y && z == w) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/vox_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(y == w && y == z && y == x) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/pp_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}else if(x == w && x == z && x == y) {
+			
+			vista.lblLogo.setIcon(new ImageIcon("imagenes/psoe_1.png"));
+			vista.lblLogo.setVisible(true);
+			
+		}
+		
+		
+		
+	
 	}
 	
 }
