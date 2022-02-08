@@ -51,7 +51,7 @@ public class Ciudadano extends Thread{
 						votacion1.setPartidoVotado("PSOE");
 						session.save(votacion1);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 					
 					}catch(HibernateException e) { 
 						e.printStackTrace();
@@ -76,7 +76,7 @@ public class Ciudadano extends Thread{
 						votacion2.setPartidoVotado("PP");
 						session.save(votacion2);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");						
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -99,7 +99,7 @@ public class Ciudadano extends Thread{
 						votacion3.setPartidoVotado("UP");
 						session.save(votacion3);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -122,7 +122,7 @@ public class Ciudadano extends Thread{
 						votacion4.setPartidoVotado("VOX");
 						session.save(votacion4);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -149,7 +149,7 @@ public class Ciudadano extends Thread{
 						votacion5.setPartidoVotado("PSOE");
 						session.save(votacion5);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -172,7 +172,7 @@ public class Ciudadano extends Thread{
 						votacion6.setPartidoVotado("PP");
 						session.save(votacion6);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -195,7 +195,7 @@ public class Ciudadano extends Thread{
 						votacion7.setPartidoVotado("UP");
 						session.save(votacion7);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -218,7 +218,7 @@ public class Ciudadano extends Thread{
 						votacion8.setPartidoVotado("VOX");
 						session.save(votacion8);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -244,7 +244,7 @@ public class Ciudadano extends Thread{
 						votacion9.setPartidoVotado("PSOE");
 						session.save(votacion9);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -267,7 +267,7 @@ public class Ciudadano extends Thread{
 						votacion10.setPartidoVotado("PP");
 						session.save(votacion10);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -291,7 +291,7 @@ public class Ciudadano extends Thread{
 						votacion11.setPartidoVotado("UP");
 						session.save(votacion11);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -314,7 +314,7 @@ public class Ciudadano extends Thread{
 						votacion12.setPartidoVotado("VOX");
 						session.save(votacion12);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -341,7 +341,7 @@ public class Ciudadano extends Thread{
 						votacion13.setPartidoVotado("PSOE");
 						session.save(votacion13);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -364,7 +364,7 @@ public class Ciudadano extends Thread{
 						votacion14.setPartidoVotado("PP");
 						session.save(votacion14);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -388,7 +388,7 @@ public class Ciudadano extends Thread{
 						votacion15.setPartidoVotado("UP");
 						session.save(votacion15);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();
@@ -411,7 +411,7 @@ public class Ciudadano extends Thread{
 						votacion16.setPartidoVotado("VOX");
 						session.save(votacion16);
 						session.getTransaction().commit();
-						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " a la hora\n");
+						textArea.append("El ciudadano cuya edad es " + edad + " ha ejercido el derecho al voto en " + comunidad + " \n");
 						
 						}catch(HibernateException e) { 
 							e.printStackTrace();

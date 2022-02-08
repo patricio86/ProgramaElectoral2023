@@ -1,11 +1,16 @@
 package vista;
 
+import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+
 import modelo.Modelo;
 import controlador.Controlador;
 import java.awt.EventQueue;
@@ -13,10 +18,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.w3c.dom.events.MouseEvent;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import java.awt.Rectangle;
@@ -26,6 +41,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 
 public class EstadisticaElectoral extends JFrame {
 
@@ -151,6 +167,8 @@ public class EstadisticaElectoral extends JFrame {
 		lblLogo.setVisible(false);
 		lblLogo.setBounds(682, 229, 239, 213);
 		contentPane.add(lblLogo);
+		
+		
 		
 	}
 	
